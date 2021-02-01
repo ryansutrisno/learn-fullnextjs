@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Cookie from 'js-cookie'
 import Router from 'next/router'
 import { unauthPage } from '../../middlewares/authorizationPage'
+import Link from 'next/link'
 
 export async function getServerSideProps(ctx) {
     await unauthPage(ctx);
@@ -16,10 +17,6 @@ export default function Login() {
     });
 
     const [status, setStatus] = useState('normal');
-
-    // useEffect(() => {
-    //     console.log('update')
-    // });
 
     async function loginHandler(e) {
         e.preventDefault()
@@ -64,6 +61,7 @@ export default function Login() {
                     Login
                 </button>
                 <div>Status: {status}</div>
+                <Link href="/auth/register"><a>Register</a></Link>
             </form>
         </div>
     );
